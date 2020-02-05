@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+    <title>Asset Management</title>
+</head>
+<body>
+<div id="app">
+<!--    <input type="text" v-model="search">-->
+<!--    <ul>-->
+<!--        <li v-for="(post, key) in posts.data">{{ key }}.-->
+<!--            <strong>{{ post.title }}</strong>-->
+<!--            <p>{{ post.body }}</p>-->
+<!--&lt;!&ndash;            <span>{{ users.data[post.userId].name }}</span>&ndash;&gt;-->
+<!--            <span>{{ post.userId }}</span>&lt;!&ndash; Выдает цифру - ID автора &ndash;&gt;-->
+<!--        </li>-->
+<!--    </ul>-->
+    <input type="text" v-model="search">
+    <ul>
+<!--        <li v-for="title in filterByTitle" :key="title.id">{{ todo.title }}</li>-->
+    </ul>
+<button @click="transformArr()">transformArr</button>
+<button @click="mapArr()">mapArr</button>
+</div>
+<script src="bundle.js"></script>
+</body>
+</html>
