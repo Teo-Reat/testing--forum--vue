@@ -23,8 +23,31 @@ new Vue({
             .then(axios.spread((posts, users, comments) => {
                 this.posts = posts.data;
                 this.users = users.data;
-                this.comments = comments;
+                this.comments = comments.data;
             }));
+    },
+    beforeUpdate() {
+        for(let p in this.posts){
+            let post = this.posts[p];
+            post.comments = [];
+            post.users = [];
+
+            for (let c in this.comments){
+                let comment = this.comments[c];
+
+                if(comment.postId === post.id){
+                    post.comments.push(comment);
+                }
+            }
+
+            for (let u in this.users){
+                let user = this.users[u];
+
+                if(user.id === post.userId){
+                    post.users.push(user);
+                }
+            }
+        }
     },
     methods: {
         transformArr() {
@@ -37,7 +60,32 @@ new Vue({
         mapArr() {
             let newArray = this.posts.map(title => title.title);
             console.log(newArray);
-        }
+        },
+        // mounted() {
+        //     for(let p in this.posts){
+        //         let post = this.posts[p];
+        //         post.comments = [];
+        //         post.users = [];
+        //
+        //         for (let c in this.comments){
+        //             let comment = this.comments[c];
+        //
+        //             if(comment.postId === post.id){
+        //                 post.comments.push(comment);
+        //             }
+        //         }
+        //
+        //         for (let u in this.users){
+        //             let user = this.users[u];
+        //
+        //             if(user.id === post.userId){
+        //                 post.users.push(user);
+        //             }
+        //         }
+        //     }
+        //
+        //     console.log(this.posts);
+        // }
     //     filterByTitle() {
     //         return this.posts.filter(item => item.title.indexOf(this.search) !== -1)
     //     },

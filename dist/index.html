@@ -16,10 +16,19 @@
 <!--    </ul>-->
     <input type="text" v-model="search">
     <ul>
-<!--        <li v-for="title in filterByTitle" :key="title.id">{{ todo.title }}</li>-->
+        <li v-for="post in posts" :key="post.id">{{ post.title }} - {{ post.users[0].name }}
+            <p>{{ post.body }}</p>
+            <ul>
+                <li v-for="comment in post.comments">{{ comment.name }}
+                    <p>{{ comment.body }}</p>
+                    <p>{{ comment.email }}</p>
+                </li>
+            </ul>
+        </li>
     </ul>
 <button @click="transformArr()">transformArr</button>
 <button @click="mapArr()">mapArr</button>
+<button @click="makePostsAndUsers()">makePostsAndUsers</button>
 </div>
 <script src="bundle.js"></script>
 </body>
