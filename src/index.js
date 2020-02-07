@@ -26,7 +26,7 @@ new Vue({
                 this.comments = comments.data;
             }));
     },
-    beforeUpdate() {
+    beforeUpdate () {
         for(let p in this.posts){
             let post = this.posts[p];
             post.comments = [];
@@ -42,62 +42,17 @@ new Vue({
 
             for (let u in this.users){
                 let user = this.users[u];
-
                 if(user.id === post.userId){
                     post.users.push(user);
                 }
             }
         }
     },
-    methods: {
-        transformArr() {
-            let newPosts = [];
-            for (let i = 0; i < this.posts.length; i++) {
-                newPosts.push(Object.entries(this.posts[i]));
-            }
-            console.log(newPosts);
-        },
-        mapArr() {
-            let newArray = this.posts.map(title => title.title);
-            console.log(newArray);
-        },
-        // mounted() {
-        //     for(let p in this.posts){
-        //         let post = this.posts[p];
-        //         post.comments = [];
-        //         post.users = [];
-        //
-        //         for (let c in this.comments){
-        //             let comment = this.comments[c];
-        //
-        //             if(comment.postId === post.id){
-        //                 post.comments.push(comment);
-        //             }
-        //         }
-        //
-        //         for (let u in this.users){
-        //             let user = this.users[u];
-        //
-        //             if(user.id === post.userId){
-        //                 post.users.push(user);
-        //             }
-        //         }
-        //     }
-        //
-        //     console.log(this.posts);
-        // }
-    //     filterByTitle() {
-    //         return this.posts.filter(item => item.title.indexOf(this.search) !== -1)
-    //     },
-    },
-    // beforeMount() {
-    //     fetch('https://jsonplaceholder.typicode.com/posts')
-    //         .then(response => response.json())
-    //         .then(json => {
-    //             this.todos = json;
-    //         })
-    // },
     computed: {
-
+        filteredList() {
+            return this.posts.filter(post => {
+                return post.title.toLowerCase().includes(this.search.toLowerCase())
+            })
+        }
     }
 });

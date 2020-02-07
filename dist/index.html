@@ -5,30 +5,29 @@
 </head>
 <body>
 <div id="app">
-<!--    <input type="text" v-model="search">-->
-<!--    <ul>-->
-<!--        <li v-for="(post, key) in posts.data">{{ key }}.-->
-<!--            <strong>{{ post.title }}</strong>-->
-<!--            <p>{{ post.body }}</p>-->
-<!--&lt;!&ndash;            <span>{{ users.data[post.userId].name }}</span>&ndash;&gt;-->
-<!--            <span>{{ post.userId }}</span>&lt;!&ndash; Выдает цифру - ID автора &ndash;&gt;-->
-<!--        </li>-->
-<!--    </ul>-->
-    <input type="text" v-model="search">
-    <ul>
-        <li v-for="post in posts" :key="post.id">{{ post.title }} - {{ post.users[0].name }}
+    <input type="text" v-model="search" placeholder="Search by title">
+    <div v-for="post in filteredList">
+        <hr>
+        <div>
+            <i>{{ post.users[0].name }}</i>
+            <br>
+            <h3>{{ post.title }}</h3>
             <p>{{ post.body }}</p>
+        </div>
+        <div>
+            <span>Comments</span>
             <ul>
                 <li v-for="comment in post.comments">{{ comment.name }}
                     <p>{{ comment.body }}</p>
                     <p>{{ comment.email }}</p>
                 </li>
             </ul>
-        </li>
-    </ul>
-<button @click="transformArr()">transformArr</button>
-<button @click="mapArr()">mapArr</button>
-<button @click="makePostsAndUsers()">makePostsAndUsers</button>
+        </div>
+        <hr>
+    </div>
+    <button @click="transformArr()">transformArr</button>
+    <button @click="mapArr()">mapArr</button>
+    <button @click="makePostsAndUsers()">makePostsAndUsers</button>
 </div>
 <script src="bundle.js"></script>
 </body>
